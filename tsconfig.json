@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    
+    "jsx": "preserve",
+    "jsxImportSource": "solid-js",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "target": "ES2018",
+    "lib": ["es2015", "dom"]
+    
+  },
+  "include": ["src","test"],
+}
