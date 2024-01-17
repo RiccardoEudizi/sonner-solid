@@ -54,9 +54,9 @@ const Toast = (props: ToastProps) => {
   const dismissible = () => props.toast.dismissible !== false;
   const toastclass = () => props.toast.className ?? '';
   const toastDescriptionclass = () => props.toast.descriptionClassName ?? '';
-  const gap = () => props.gap ?? GAP;
+  const gap = () => props.gap || GAP;
   // Height index is used to calculate the offset as it gets updated before the toast array, which means we can calculate the new layout faster.
-  const heightIndex = () => props.heights.findIndex((height) => height.toastId === props.toast.id) ?? 0;
+  const heightIndex = () => props.heights.findIndex((height) => height.toastId === props.toast.id) || 0;
 
   const duration = () => props.toast.duration || props.duration || TOAST_LIFETIME;
 
@@ -79,10 +79,10 @@ const Toast = (props: ToastProps) => {
   const invert = props.toast.invert || props.invert;
   const disabled = () => toastType() === 'loading';
 
-  let offset = () => heightIndex() * gap() + toastsHeightBefore();
+  const offset = () => heightIndex() * gap() + toastsHeightBefore();
 
   createEffect(() => {
-    console.log(offset(), removed(), heightIndex(), gap(), toastsHeightBefore());
+    console.log(offset(), removed(), heightIndex(), gap(), toastsHeightBefore(), props.heights);
   });
   onMount(() => {
     // Trigger enter animation without using CSS animation
@@ -90,10 +90,9 @@ const Toast = (props: ToastProps) => {
   });
 
   createEffect(
-    on(
-      () => [mounted(), props.toast.title, props.toast.description, props.toast.id] as const,
-      ([mounted, title, description, id]) => {
-        if (!mounted) return;
+   
+      () => {
+        if (!mounted()) return;
         const toastNode = toastRef;
         const originalHeight = toastNode.style.height;
         toastNode.style.height = 'auto';
@@ -103,15 +102,18 @@ const Toast = (props: ToastProps) => {
         setInitialHeight(newHeight);
 
         props.setHeights((heights) => {
-          const alreadyExists = heights.find((height) => height.toastId === id);
+          const alreadyExists = heights.find((height) => height.toastId === props.toast.id);
           if (!alreadyExists) {
-            return [{ toastId: id, height: newHeight }, ...heights];
+          console.log("ENTERED",[{ toastId: props.toast.id, height: newHeight }, ...heights]);
+          
+            return [{ toastId: props.toast.id, height: newHeight }, ...heights];
           } else {
-            return heights.map((height) => (height.toastId === id ? { ...height, height: newHeight } : height));
+          
+            return heights.map((height) => (height.toastId === props.toast.id ? { ...height, height: newHeight } : height));
           }
         });
       },
-    ),
+    
   );
 
   const deleteToast = () => {
@@ -183,15 +185,18 @@ const Toast = (props: ToastProps) => {
         if (toastNode) {
           const height = toastNode.getBoundingClientRect().height;
 
-          // Add toast height tot heights array after the toast is mounted
-          setInitialHeight(height);
-          props.setHeights((h) => [{ toastId: id, height }, ...h]);
 
-          return () => props.setHeights((h) => h.filter((height) => height.toastId !== id));
+          // Add toast height to heights array after the toast is mounted
+          setInitialHeight(height);
+         
+
+          
         }
       },
     ),
   );
+
+   onCleanup(() => props.setHeights((h) => h.filter((height) => height.toastId !== props.toast.id)))
 
   createEffect(
     on(
@@ -388,7 +393,7 @@ const Toast = (props: ToastProps) => {
           {props.toast.action ? (
             <button
               data-button=""
-              style={props.toast.actionButtonStyle || props.actionButtonStyle}
+              style={props.toast.actionButtonStyle ?? props.actionButtonStyle}
               onClick={(event) => {
                 props.toast.action?.onClick(event);
                 if (event.defaultPrevented) return;
