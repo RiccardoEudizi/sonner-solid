@@ -1,13 +1,13 @@
-https://github.com/vallezw/sonner/assets/50796600/59b95cb7-9068-4f3e-8469-0b35d9de5cf0
 
-[Sonner](https://sonner.emilkowal.ski/) is an opinionated toast component for React. You can read more about why and how it was built [here](https://emilkowal.ski/ui/building-a-toast-component).
+
+[sonner-solid](https://sonner.emilkowal.ski/) is an opinionated toast component for SolidJs.
 
 ## Usage
 
 To start using the library, install it in your project:
 
 ```bash
-npm install sonner
+npm install sonner-solid
 ```
 
 Add `<Toaster />` to your app, it will be the place where all your toasts will be rendered.
@@ -28,6 +28,6 @@ function App() {
 }
 ```
 
-## Documentation
+<!-- ## Documentation
 
-You can find out more about the API and implementation in the [Documentation](https://sonner.emilkowal.ski/getting-started).
+You can find out more about the API and implementation in the [Documentation](https://sonner.emilkowal.ski/getting-started). -->
