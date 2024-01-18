@@ -1,6 +1,6 @@
 import { createSignal } from 'solid-js';
 
-import { Toaster, toast } from '../../../src/index';
+import { Toaster, toast } from 'solid-sonner';
 
 
 

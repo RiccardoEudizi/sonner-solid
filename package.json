@@ -1,32 +1,27 @@
 {
-  "name": "sonner",
-  "version": "1.3.0",
-  "description": "An opinionated toast component for React.",
-  "main": "./dist/index.js",
-  "module": "./dist/index.mjs",
+  "name": "solid-sonner",
+  "version": "1.0.0",
+  "description": "An opinionated toast component for Solid. (ported from sonner)",
+  "source": "src/index.tsx",
+  "main": "dist/esm/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/types/index.d.ts",
+  "type": "module",
   "exports": {
     ".": {
-      "import": {
-        "types": "./dist/index.d.mts",
-        "default": "./dist/index.mjs"
-      },
-      "require": {
-        "types": "./dist/index.d.ts",
-        "default": "./dist/index.js"
-      }
-    }
-  },
-  "types": "./dist/index.d.ts",
+      "solid": "./dist/source/index.jsx",
+      "import": "./dist/esm/index.js",
+      "browser": "./dist/esm/index.js",
+      "require": "./dist/esm/index.js",
+      "node": "./dist/esm/index.js"
+    }},
+  
   "files": [
     "dist"
   ],
+  "sideEffects": false,
   "scripts": {
-    "build": "vite build",
-    "dev": "bunchee --watch",
-    "dev:website": "turbo run dev --filter=website...",
-    "dev:test": "turbo run dev --filter=test...",
-    "format": "prettier --write .",
-    "test": "playwright test",
+    "build": "tsc && rollup -c",
     "prepublishOnly": "rm -rf dist && pnpm build"
   },
   "keywords": [
@@ -36,30 +31,31 @@
     "snackbar",
     "message"
   ],
-  "author": "Emil Kowalski <e@emilkowal.ski>",
+  "author": "Riccardo Eudizi <rik.eudizi@gmail.com>",
   "license": "MIT",
-  "homepage": "https://sonner.emilkowal.ski/",
+  "homepage": "",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/emilkowalski/sonner.git"
+    "url": "git+https://github.com/RiccardoEudizi/solid-sonner.git"
   },
-  "bugs": {
-    "url": "https://github.com/emilkowalski/sonner/issues"
-  },
+  
   "devDependencies": {
-    "@playwright/test": "^1.30.0",
+    "@babel/core": "^7.18.13",
+    "@babel/preset-typescript": "^7.18.6",
+    "@rollup/plugin-babel": "6.0.3",
+    "@rollup/plugin-node-resolve": "15.0.1",
+    "@rollup/plugin-terser": "0.2.0",
     "@types/node": "^18.11.13",
-    "bunchee": "^4.2.11",
+    "babel-preset-solid": "^1.8.6",
     "prettier": "^2.8.4",
+    "rollup": "^3.29.4",
+    "rollup-plugin-import-css": "^3.4.0",
+    "rollup-preset-solid": "^2.0.1",
     "solid-js": "1.8.11",
-    "typescript": "^5.3.3",
-    "vite": "^5.0.11",
-    "vite-plugin-dts": "^3.7.1",
-    "vite-plugin-solid": "^2.8.0"
+    "typescript": "^5.3.3"
   },
   "peerDependencies": {
     "solid-js": "1.8.11"
   },
-  "packageManager": "pnpm@6.32.11"
-  
+  "packageManager": "pnpm@8.12.1"
 }

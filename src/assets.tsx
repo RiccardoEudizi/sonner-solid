@@ -1,19 +1,19 @@
 import { JSX } from 'solid-js/jsx-runtime';
 import type { ToastTypes } from './types';
 
-export const getAsset = (type: ToastTypes): JSX.Element | null => {
-  switch (type) {
+export const GetAsset = (props: {type:ToastTypes}): JSX.Element | null => {
+  switch (props.type) {
     case 'success':
-      return SuccessIcon ;
+      return <SuccessIcon /> ;
 
     case 'info':
-      return InfoIcon ;
+      return <InfoIcon/> ;
 
     case 'warning':
-      return WarningIcon ;
+      return <WarningIcon/> ;
 
     case 'error':
-      return ErrorIcon ;
+      return <ErrorIcon/> ;
 
     default:
       return null;
@@ -34,7 +34,7 @@ export const Loader = ({ visible }: { visible: boolean }) => {
   );
 };
 
-const SuccessIcon =
+const SuccessIcon =() =>
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" height="20" width="20">
     <path
       fill-rule="evenodd"
@@ -44,7 +44,7 @@ const SuccessIcon =
   </svg>
 ;
 
-const WarningIcon = 
+const WarningIcon = () =>
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" height="20" width="20">
     <path
       fill-rule="evenodd"
@@ -54,7 +54,7 @@ const WarningIcon =
   </svg>
 ;
 
-const InfoIcon =
+const InfoIcon =() =>
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" height="20" width="20">
     <path
       fill-rule="evenodd"
@@ -64,7 +64,7 @@ const InfoIcon =
   </svg>
 ;
 
-const ErrorIcon = 
+const ErrorIcon = () => 
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" height="20" width="20">
     <path
       fill-rule="evenodd"

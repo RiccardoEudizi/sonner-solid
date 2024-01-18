@@ -1,19 +1,15 @@
 import './styles.css';
-import { getAsset, Loader } from './assets';
+import { GetAsset, Loader } from './assets';
 import type { HeightT, ToastT, ToastToDismiss, ExternalToast, ToasterProps, ToastProps } from './types';
 import { ToastState, toast } from './state';
 import {
   createEffect,
-  createMemo,
   createSignal,
-  onMount,
-  type JSX,
+  onMount, 
   on,
-  splitProps,
   onCleanup,
   For,
   Show,
-  Suspense,
 } from 'solid-js';
 
 // Visible toasts amount
@@ -82,7 +78,8 @@ const Toast = (props: ToastProps) => {
   const offset = () => heightIndex() * gap() + toastsHeightBefore();
 
   createEffect(() => {
-    console.log(offset(), removed(), heightIndex(), gap(), toastsHeightBefore(), props.heights);
+    console.log(props);
+   
   });
   onMount(() => {
     // Trigger enter animation without using CSS animation
@@ -313,8 +310,8 @@ const Toast = (props: ToastProps) => {
         }
       }}
     >
-      {props.closeButton && !props.toast.jsx ? (
-        <button
+      <Show when={props.closeButton != undefined && props.closeButton && !props.toast.jsx}>
+      <button
           aria-label={props.closeButtonAriaLabel}
           data-disabled={disabled()}
           data-close-button
@@ -343,24 +340,25 @@ const Toast = (props: ToastProps) => {
             <line x1="6" y1="6" x2="18" y2="18"></line>
           </svg>
         </button>
-      ) : null}
-      {props.toast.jsx || props.toast.title ? (
-        props.toast.jsx || props.toast.title
-      ) : (
-        <>
-          {toastType() || props.toast.icon || toast.promise ? (
-            <div data-icon="">
+      </Show>
+      
+       
+      
+      <Show when={!(props.toast.jsx != undefined  || (typeof props.toast.title !==  "string"  && props.toast.title != undefined) )} fallback={props.toast.jsx || props.toast.title}>
+      <>
+        <Show when={(toastType() || props.toast.icon != undefined || toast.promise != undefined)}>
+          <div data-icon="">
               {(props.toast.promise || props.toast.type === 'loading') && !props.toast.icon ? getLoadingIcon() : null}
-              {props.toast.icon || getAsset(toastType())}
+              {props.toast.icon ?? <GetAsset type ={toastType()} />}
             </div>
-          ) : null}
-
+        </Show>
+         
           <div data-content="">
             <div data-title="" class={cn(props.classNames?.title, props.toast?.classNames?.title)}>
               {props.toast.title}
             </div>
-            {props.toast.description ? (
-              <div
+            <Show when={props.toast.description !== undefined}>
+            <div
                 data-description=""
                 class={cn(
                   props.descriptionClassName,
@@ -371,10 +369,11 @@ const Toast = (props: ToastProps) => {
               >
                 {props.toast.description}
               </div>
-            ) : null}
+            </Show>
+            
           </div>
-          {props.toast.cancel ? (
-            <button
+          <Show when={props.toast.cancel !== undefined}>
+          <button
               data-button
               data-cancel
               style={props.toast.cancelButtonStyle || props.cancelButtonStyle}
@@ -389,9 +388,9 @@ const Toast = (props: ToastProps) => {
             >
               {props.toast.cancel.label}
             </button>
-          ) : null}
-          {props.toast.action ? (
-            <button
+          </Show>
+        <Show when={props.toast.action != undefined}>
+        <button
               data-button=""
               style={props.toast.actionButtonStyle ?? props.actionButtonStyle}
               onClick={(event) => {
@@ -403,9 +402,13 @@ const Toast = (props: ToastProps) => {
             >
               {props.toast.action.label}
             </button>
-          ) : null}
+        </Show>
+          
         </>
-      )}
+      </Show>
+      
+        
+     
     </li>
   );
 };
