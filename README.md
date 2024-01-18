@@ -1,6 +1,6 @@
 
 
-[sonner-solid](https://sonner.emilkowal.ski/) is an opinionated toast component for SolidJs.
+[sonner-solid](https://sonner-solid-website.vercel.app/) is an opinionated toast component for SolidJs ported from the react version [sonner](https://sonner.emilkowal.ski/).
 
 ## Usage
 
@@ -28,6 +28,6 @@ function App() {
 }
 ```
 
-<!-- ## Documentation
+## Documentation
 
-You can find out more about the API and implementation in the [Documentation](https://sonner.emilkowal.ski/getting-started). -->
+You can find out more about the API and implementation in the [Documentation](https://sonner-solid-website.vercel.app/getting-started).
