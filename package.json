@@ -1,5 +1,5 @@
 {
-  "name": "solid-sonner",
+  "name": "sonner-solid",
   "version": "1.0.0",
   "description": "An opinionated toast component for Solid. (ported from sonner)",
   "source": "src/index.tsx",
@@ -36,7 +36,7 @@
   "homepage": "",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/RiccardoEudizi/solid-sonner.git"
+    "url": "git+https://github.com/RiccardoEudizi/sonner-solid.git"
   },
   
   "devDependencies": {
