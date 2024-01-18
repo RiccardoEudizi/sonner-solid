@@ -17,7 +17,7 @@
     "prismjs": "^1.29.0",
     "solid-js": "^1.8.11",
     "solid-motionone": "^1.0.0",
-    "sonner-solid": "workspace:^",
+    "sonner-solid": "latest",
     "tailwindcss": "^3.3.3",
     "vinxi": "^0.1.4"
   },
