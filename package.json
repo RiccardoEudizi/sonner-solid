@@ -21,8 +21,8 @@
   ],
   "sideEffects": false,
   "scripts": {
-    "build": "tsc && rollup -c",
-    "prepublishOnly": "rm -rf dist && pnpm build"
+    "build": "tsc && rollup -c"
+    
   },
   "keywords": [
     "solidjs",
