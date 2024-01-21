@@ -14,7 +14,7 @@ Add `<Toaster />` to your app, it will be the place where all your toasts will b
 After that you can use `toast()` from anywhere in your app.
 
 ```jsx
-import { Toaster, toast } from 'sonner';
+import { Toaster, toast } from 'sonner-solid';
 
 // ...
 
