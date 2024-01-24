@@ -77,10 +77,7 @@ const Toast = (props: ToastProps) => {
 
   const offset = () => heightIndex() * gap() + toastsHeightBefore();
 
-  createEffect(() => {
-    console.log(props);
-   
-  });
+  
   onMount(() => {
     // Trigger enter animation without using CSS animation
     setMounted(true);
@@ -101,7 +98,6 @@ const Toast = (props: ToastProps) => {
         props.setHeights((heights) => {
           const alreadyExists = heights.find((height) => height.toastId === props.toast.id);
           if (!alreadyExists) {
-          console.log("ENTERED",[{ toastId: props.toast.id, height: newHeight }, ...heights]);
           
             return [{ toastId: props.toast.id, height: newHeight }, ...heights];
           } else {
@@ -606,7 +602,6 @@ const Toaster = (props: ToasterProps) => {
                   }
                 }}
                 onmouseenter={() => {
-                  console.log(listRef);
 
                   setExpanded(true);
                 }}

@@ -179,7 +179,6 @@ export const ToastState = new Observer();
 // bind this to the toast function
 const toastFunction = (message: string | JSX.Element, data?: ExternalToast) => {
   const id = data?.id || toastsCounter++;
-console.log("CLICKED");
 
   ToastState.addToast({
     title: message,
