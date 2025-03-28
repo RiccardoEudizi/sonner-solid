@@ -25,4 +25,4 @@ import withSolid from "rollup-preset-solid";
 //   ]
 // };
 
-export default withSolid({plugins:[css({output:"styles.css"})],printInstructions:true, external: ["solid-js", "solid-js/web", "solid-js/store"],});
+export default withSolid({ plugins: [css({ output: "styles.css" })], printInstructions: true, external: ["solid-js", "solid-js/web", "solid-js/store"], });

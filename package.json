@@ -1,6 +1,6 @@
 {
   "name": "sonner-solid",
-  "version": "1.1.2",
+  "version": "1.2.0",
   "description": "An opinionated toast component for Solid. (ported from sonner)",
   "source": "src/index.tsx",
   "main": "dist/esm/index.js",
@@ -9,6 +9,7 @@
   "type": "module",
   "exports": {
     ".": {
+      "types": "./dist/types/index.d.ts",
       "solid": "./dist/source/index.jsx",
       "import": "./dist/esm/index.js",
       "browser": "./dist/esm/index.js",
@@ -21,7 +22,7 @@
   ],
   "sideEffects": false,
   "scripts": {
-    "build": "tsc && rollup -c"
+    "build": "tsc && rollup -c && copy dist/esm/styles.css dist/source/styles.css"
     
   },
   "keywords": [
@@ -55,7 +56,7 @@
     "typescript": "^5.3.3"
   },
   "peerDependencies": {
-    "solid-js": "latest"
+    "solid-js": "1.9.5"
   },
   "packageManager": "pnpm@8.12.1"
 }
