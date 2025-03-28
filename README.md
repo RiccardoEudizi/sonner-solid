@@ -30,4 +30,4 @@ function App() {
 
 ## Documentation
 
-You can find out more about the API and implementation in the [Documentation](https://sonner-solid-website.vercel.app/getting-started).
+You can find out more about the API and implementation in the [Documentation](https://sonner-solid.vercel.app/getting-started).
